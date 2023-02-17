@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private var rcAdapter = AccommodationAdapter()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -22,6 +25,8 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val accommRc: RecyclerView = view.findViewById(R.id.acommodationSearchResultsRc)
+        accommRc.adapter = rcAdapter
         // закомментила потому что поменялся дата класс
         //val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
         //val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
