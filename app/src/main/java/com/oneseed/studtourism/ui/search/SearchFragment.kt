@@ -22,15 +22,18 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
-        val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
-        val c = TourismData("13", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
+        // закомментила потому что поменялся дата класс
+        //val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
+        //val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
+        //val c = TourismData("13", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
 
         fun changeSearchResult() {
             if (binding.settingsLayout.visibility == View.VISIBLE) {
                 val isNotSelected =
                     binding.fedDistrictSpinner.selectedItem.toString() == "" && binding.subjectFedSpinner.selectedItem.toString() == "" && binding.localitySpinner.selectedItem.toString() == ""
                 if (!isNotSelected) {
+                    // закомментила потому что поменялся дата класс
+                    /*
                     for (item in listOf(a, b, c)) {
                         if (binding.searchEditText.text.toString() in item.name
                             && binding.fedDistrictSpinner.selectedItem.toString() in item.fedDistrict
@@ -40,9 +43,11 @@ class SearchFragment : Fragment() {
                             Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT)
                                 .show()
                         }
-                    }
+                    } */
                 }
             } else {
+                // закомментила потому что поменялся дата класс
+                /*
                 for (item in listOf(a, b, c)) {
                     if (binding.searchEditText.text.toString() in item.name
                         && binding.searchEditText.text.isNotBlank()
@@ -50,7 +55,7 @@ class SearchFragment : Fragment() {
                     ) {
                         Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT).show()
                     }
-                }
+                } */
             }
         }
 

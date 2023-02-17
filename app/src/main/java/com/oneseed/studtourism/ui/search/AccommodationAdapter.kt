@@ -1,23 +1,57 @@
 package com.oneseed.studtourism.ui.search
 
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.oneseed.studtourism.R
+import com.oneseed.studtourism.databinding.AccommodationItemBinding
 
 class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.AccomodationHolder>() {
-    class AccomodationHolder(item: View) : RecyclerView.ViewHolder(item) {
 
+    var accommsList = ArrayList<TourismData>()
+
+    class AccomodationHolder(item: View) : RecyclerView.ViewHolder(item) {
+        private val binding = AccommodationItemBinding.bind(item)
+
+        fun bind(accommItem: TourismData) = with(binding) {
+
+            //accommImage.drawable = accommItem.photo
+            nameTv.text = accommItem.name
+            cityTv.text = accommItem.city
+            accommCostTv.text = accommItem.cost
+
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccomodationHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.accommodation_item, parent, false)
+        return AccomodationHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return accommsList.size
     }
 
     override fun onBindViewHolder(holder: AccomodationHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(accommsList[position])
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addFeedRecord(accommItem: TourismData) {
+        accommsList.add(accommItem)
+        notifyDataSetChanged()
+    }
+
+    fun clearRecords() {
+        accommsList.removeAll(accommsList.toSet())
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun removeObject(accommItem: TourismData) {
+        accommsList.remove(accommItem)
+        notifyDataSetChanged()
     }
 }

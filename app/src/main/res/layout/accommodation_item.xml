@@ -28,7 +28,7 @@
             app:cardCornerRadius="10dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/accommImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
@@ -42,7 +42,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -54,7 +54,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/city_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -63,7 +63,7 @@
                 android:textColor="@color/green_text" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/accommCost_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/raleway_black"
