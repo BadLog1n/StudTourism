@@ -12,6 +12,9 @@
     <string name="events">События</string>
     <string name="user_account">Личный кабинет</string>
 
+    <string name="filters">Фильтры</string>
+    <string name="sorting">Сортировка</string>
+
     <string-array name="fedDistrict">
         <item></item>
         <item>Дальневосточный</item>
