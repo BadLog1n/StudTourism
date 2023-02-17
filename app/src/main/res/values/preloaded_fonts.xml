@@ -2,5 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/inter</item>
+        <item>@font/raleway</item>
+        <item>@font/raleway_black</item>
     </array>
 </resources>

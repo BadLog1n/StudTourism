@@ -314,8 +314,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_manage_search_24" />
-                            <entry key="sourceFile" value="C:\Users\admin\AndroidStudioProjects\StudTourism" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_heart_filled" />
+                            <entry key="sourceFile" value="C:\Users\sssof\AndroidStudioProjects\StudTourism\StudTourism\custom icons\ic_heart_filled.svg" />
                           </map>
                         </option>
                       </PersistentState>
