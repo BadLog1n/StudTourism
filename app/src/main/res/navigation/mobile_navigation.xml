@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_search">
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.oneseed.studtourism.ui.search.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.oneseed.studtourism.ui.notifications.NotificationsFragment"
+        android:label="@string/notifications"
+        tools:layout="fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_navigation"
+        android:name="com.oneseed.studtourism.ui.home.NavigationFragment"
+        android:label="@string/navigation"
+        tools:layout="@layout/fragment_navigation" />
+    <fragment
+        android:id="@+id/navigation_events"
+        android:name="com.oneseed.studtourism.ui.dashboard.DashboardFragment"
+        android:label="@string/events"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/navigation_user_account"
+        android:name="com.oneseed.studtourism.ui.userAccount.UserAccountFragment"
+        android:label="@string/user_account"
+        tools:layout="@layout/fragment_user_account" />
+</navigation>

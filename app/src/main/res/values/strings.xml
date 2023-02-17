@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">StudTourism</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="notifications">Уведомления</string>
+    <string name="search">Поиск</string>
+    <string name="fedDistrict">Федеральный округ</string>
+    <string name="subjectFed">Субъект РФ</string>
+    <string name="locality">Населенный пункт</string>
+    <string name="navigation">Навигация</string>
+    <string name="events">События</string>
+    <string name="user_account">Личный кабинет</string>
+
+    <string-array name="fedDistrict">
+        <item></item>
+        <item>Дальневосточный</item>
+        <item>Приволжский</item>
+        <item>Центральный</item>
+    </string-array>
+
+    <string-array name="subject">
+        <item></item>
+        <item>Алтайский край</item>
+        <item>Амурская область</item>
+        <item>Астраханская область</item>
+    </string-array>
+
+    <string-array name="locality">
+        <item></item>
+        <item>Апатиты</item>
+        <item>Астрахань</item>
+        <item>Байкал</item>
+    </string-array>
+
+
+
+
+</resources>

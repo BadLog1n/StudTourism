@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_plane_"
+        android:title="@string/search" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_bell"
+        android:title="@string/notifications" />
+
+    <item
+        android:id="@+id/navigation_navigation"
+        android:icon="@drawable/ic__compass_"
+        android:title="@string/navigation" />
+
+    <item
+        android:id="@+id/navigation_events"
+        android:icon="@drawable/ic__location_pin_"
+        android:title="@string/events" />
+    <item
+        android:id="@+id/navigation_user_account"
+        android:icon="@drawable/ic_user"
+        android:title="@string/user_account" />
+</menu>
