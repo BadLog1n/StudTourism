@@ -22,7 +22,6 @@
             android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="0.05"
             android:autofillHints="false"
             android:ems="10"
             android:gravity="bottom|center"
@@ -33,37 +32,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/searchSettingsButton"
                 android:layout_width="70dp"
                 android:layout_height="50dp"
-                android:layout_weight="1"
                 android:background="@null"
                 android:src="@drawable/baseline_filter_alt_24"
-                android:tint="@color/grey" />
+                app:tint="@color/grey" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/filters_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/filters" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/sortingSearchButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/ic_sort" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/sorting_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:text="@string/sorting" />
 
@@ -73,6 +71,10 @@
             android:id="@+id/settingsLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:visibility="gone">
@@ -147,8 +149,30 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/searchResultsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/found_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/found"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/acommodationSearchResults_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
