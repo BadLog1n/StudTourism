@@ -24,9 +24,9 @@
         tools:layout="@layout/fragment_navigation" />
     <fragment
         android:id="@+id/navigation_events"
-        android:name="com.oneseed.studtourism.ui.dashboard.DashboardFragment"
+        android:name="com.oneseed.studtourism.ui.dashboard.EventsFragment"
         android:label="@string/events"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_events" />
     <fragment
         android:id="@+id/navigation_user_account"
         android:name="com.oneseed.studtourism.ui.userAccount.UserAccountFragment"
