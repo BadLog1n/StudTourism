@@ -24,21 +24,24 @@
             android:autofillHints="false"
             android:background="@drawable/edittext_background"
             android:ems="10"
+            android:fontFamily="@font/roboto"
             android:gravity="start|center_vertical"
             android:hint="@string/whereAreWeGoing"
             android:inputType="text"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp">
 
             <ImageButton
                 android:id="@+id/searchSettingsButton"
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:background="@null"
                 android:src="@drawable/baseline_filter_alt_24"
@@ -50,12 +53,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="@string/filters" />
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/filters"
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/sortingSearchButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/ic_sort" />
 
@@ -65,7 +70,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="@string/sorting" />
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/sorting"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -165,9 +172,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans_semibold"
                 android:text="@string/found"
                 android:textColor="#000000"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
