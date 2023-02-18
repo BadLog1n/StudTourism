@@ -25,6 +25,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private var rcAdapter = AccommodationAdapter()
     private val searchApi = SearchApi()
+    private lateinit var result: ArrayList<TourismData>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -49,91 +50,83 @@ class SearchFragment : Fragment() {
 
 
         fun changeSearchResult() {
-            if (binding.settingsLayout.visibility == View.VISIBLE) {
-                val isNotSelected =
-                    binding.fedDistrictSpinner.selectedItem.toString() == "" && binding.subjectFedSpinner.selectedItem.toString() == "" && binding.localitySpinner.selectedItem.toString() == ""
-                if (!isNotSelected) {
-                    // закомментила потому что поменялся дата класс
-                    /*
-                    for (item in listOf(a, b, c)) {
-                        if (binding.searchEditText.text.toString() in item.name
-                            && binding.fedDistrictSpinner.selectedItem.toString() in item.fedDistrict
-                            && binding.subjectFedSpinner.selectedItem.toString() in item.subject
-                            && binding.localitySpinner.selectedItem.toString() in item.locality
+            lifecycleScope.launch() {
+                withContext(Dispatchers.Main) {
+                    rcAdapter.clearRecords()
+                    for (item in result) {
+                        if (binding.searchEditText.text.isNotBlank()
+                            && binding.searchEditText.text.isNotEmpty()
                         ) {
-                            Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    } */
-                }
-
-            } else {
-
-
-                try {
-                    lifecycleScope.launch() {
-                        withContext(Dispatchers.IO) {
-                            val document: String
-                            val sitePath =
-                                "https://stud-api.sabir.pro/universities/all"
-
-                            val response: Connection.Response = Jsoup.connect(sitePath)
-                                .ignoreContentType(true)
-                                .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21")
-                                .timeout(10000).execute()
-
-                            val statusCode: Int = response.statusCode()
-
-                            if (statusCode == 200) {
-                                document =
-                                    Jsoup.connect(sitePath).ignoreContentType(true).get().text()
-                            } else throw Exception("Error")
-
-                            val jsonArray = JSONArray(document)
-                            val result = searchApi.returnJson(jsonArray)
-                            withContext(Dispatchers.Main) {
-                                rcAdapter.clearRecords()
-                                for (item in result) {
-                                    if (binding.searchEditText.text.isNotBlank()
-                                        && binding.searchEditText.text.isNotEmpty()
-                                    ) {
-                                        if (binding.searchEditText.text.toString()
-                                                .uppercase() in item.name.uppercase()
-                                        ) {
-                                            rcAdapter.addAccomodation(item)
-                                        }
-
-                                    } else {
-                                        rcAdapter.addAccomodation(item)
-
-                                    }
-                                }
+                            if (binding.searchEditText.text.toString()
+                                    .uppercase() in item.name.uppercase()
+                                || binding.searchEditText.text.toString().uppercase() in item.city.uppercase()
+                            ) {
+                                rcAdapter.addAccomodation(item)
                             }
 
+                        } else {
+                            rcAdapter.addAccomodation(item)
+
                         }
                     }
-                } catch (e: Exception) {
-                    Log.e("Error", e.toString())
                 }
-
-
-                // закомментила потому что поменялся дата класс
-                /*
-                for (item in listOf(a, b, c)) {
-                    if (binding.searchEditText.text.toString() in item.name
-                        && binding.searchEditText.text.isNotBlank()
-                        && binding.searchEditText.text.isNotEmpty()
-                    ) {
-                        Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT).show()
-                    }
-                } */
             }
+
         }
 
 
+        fun loadData() {
+            try {
+                lifecycleScope.launch() {
+                    withContext(Dispatchers.IO) {
+                        val document: String
+                        val sitePath =
+                            "https://stud-api.sabir.pro/universities/all"
 
-        changeSearchResult()
+                        val response: Connection.Response = Jsoup.connect(sitePath)
+                            .ignoreContentType(true)
+                            .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21")
+                            .timeout(10000).execute()
 
+                        val statusCode: Int = response.statusCode()
+
+                        if (statusCode == 200) {
+                            document =
+                                Jsoup.connect(sitePath).ignoreContentType(true).get().text()
+                        } else throw Exception("Error")
+
+                        val jsonArray = JSONArray(document)
+                        result = searchApi.returnJson(jsonArray)
+                        withContext(Dispatchers.Main) {
+                            rcAdapter.clearRecords()
+                            for (item in result) {
+                                if (binding.searchEditText.text.isNotBlank()
+                                    && binding.searchEditText.text.isNotEmpty()
+                                ) {
+                                    if (binding.searchEditText.text.toString()
+                                            .uppercase() in item.name.uppercase() || binding.searchEditText.text.toString() in item.city.uppercase()
+                                    ) {
+                                        rcAdapter.addAccomodation(item)
+                                    }
+
+                                } else {
+                                    rcAdapter.addAccomodation(item)
+
+                                }
+                            }
+                            if (rcAdapter.itemCount == 0) {
+                                binding.foundtv.text = "Ничего не найдено"
+                            }
+                        }
+
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Error", e.toString())
+            }
+        }
+
+        loadData()
         binding.searchSettingsButton.setOnClickListener {
             binding.settingsLayout.visibility =
                 if (binding.settingsLayout.visibility == View.VISIBLE) View.GONE else View.VISIBLE

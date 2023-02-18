@@ -166,7 +166,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/found_tv"
+                android:id="@+id/foundtv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

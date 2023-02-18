@@ -17,13 +17,15 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
         private val binding = AccommodationItemBinding.bind(item)
 
         fun bind(accommItem: TourismData) = with(binding) {
-
-            //accommImage.drawable = accommItem.photo
-            Picasso.get().load(accommItem.photo).into(accommImage)
+            try {
+                Picasso.get().load(accommItem.photo).into(accommImage)
+            } catch (e: Exception) {
+                Picasso.get().load(R.drawable.ic__location_pin_).into(accommImage)
+            }
             accommImage.drawable
             nameTv.text = accommItem.name
             cityTv.text = accommItem.city
-            accommCostTv.text = accommItem.cost
+            accommCostTv.text = "от ${accommItem.cost} руб/сутки"
 
         }
     }
