@@ -47,11 +47,7 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.show()
                     navController.navigate(R.id.navigation_search)
                 return@setOnItemSelectedListener true}
-                R.id.navigation_notifications -> {
-                    toolbar.title = "Уведомления"
-                    supportActionBar?.show()
-                    navController.navigate(R.id.navigation_notifications)
-                    return@setOnItemSelectedListener true}
+
                 R.id.navigation_events -> {
                     toolbar.title = "События"
                     supportActionBar?.show()

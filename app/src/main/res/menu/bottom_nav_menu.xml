@@ -6,10 +6,7 @@
         android:icon="@drawable/ic_plane_"
         android:title="@string/search" />
 
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_bell"
-        android:title="@string/notifications" />
+
 
     <item
         android:id="@+id/navigation_navigation"
