@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.AccommodationItemBinding
+import com.squareup.picasso.Picasso
 
 class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.AccomodationHolder>() {
 
@@ -18,6 +19,8 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
         fun bind(accommItem: TourismData) = with(binding) {
 
             //accommImage.drawable = accommItem.photo
+            Picasso.get().load(accommItem.photo).into(accommImage)
+            accommImage.drawable
             nameTv.text = accommItem.name
             cityTv.text = accommItem.city
             accommCostTv.text = accommItem.cost
