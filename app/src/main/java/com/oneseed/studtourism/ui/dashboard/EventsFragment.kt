@@ -84,6 +84,8 @@ class EventsFragment : Fragment() {
                         val jsonArray = JSONArray(document)
                         result = eventApi.returnJson(jsonArray)
                         withContext(Dispatchers.Main) {
+                            binding.progressBar.visibility = View.GONE
+                            binding.eventsRc.visibility = View.VISIBLE
                             rcAdapter.clearRecords()
                             for (item in result) {
                                 rcAdapter.addEvent(item)

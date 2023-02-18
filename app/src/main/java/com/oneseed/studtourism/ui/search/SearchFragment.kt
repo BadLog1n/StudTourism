@@ -43,6 +43,8 @@ class SearchFragment : Fragment() {
         fun changeSearchResult() {
             lifecycleScope.launch {
                 withContext(Dispatchers.Main) {
+                    binding.progressBar.visibility = View.GONE
+                    binding.acommodationSearchResultsRc.visibility = View.VISIBLE
                     rcAdapter.clearRecords()
                     for (item in result) {
                         if (binding.searchEditText.text.isNotBlank()
@@ -89,6 +91,8 @@ class SearchFragment : Fragment() {
                         val jsonArray = JSONArray(document)
                         result = searchApi.returnJson(jsonArray)
                         withContext(Dispatchers.Main) {
+                            binding.progressBar.visibility = View.GONE
+                            binding.acommodationSearchResultsRc.visibility = View.VISIBLE
                             rcAdapter.clearRecords()
                             for (item in result) {
                                 if (binding.searchEditText.text.isNotBlank()
