@@ -315,8 +315,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_heart_filled" />
-                            <entry key="sourceFile" value="C:\Users\sssof\AndroidStudioProjects\StudTourism\StudTourism\custom icons\ic_heart_filled.svg" />
+                            <entry key="outputName" value="ic_train" />
+                            <entry key="sourceFile" value="C:\Users\sssof\AndroidStudioProjects\StudTourism\StudTourism\custom icons\ic_train.svg" />
                           </map>
                         </option>
                       </PersistentState>
