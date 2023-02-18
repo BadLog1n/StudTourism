@@ -13,8 +13,7 @@ class SearchApi {
                 val region = jsonObject.getString("region")
                 val city = jsonObject.getString("city")
                 val photo = jsonObject.getString("photo")
-                //cost is random value from 50 to 3000
-                val cost = (50..3000).random().toString()
+                val cost = (50..1000).random().toString()
                 val organization = "none"
                 val type = "none"
                 val food = "none"
