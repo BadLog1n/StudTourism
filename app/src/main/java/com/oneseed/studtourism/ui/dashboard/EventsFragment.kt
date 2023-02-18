@@ -36,17 +36,15 @@ class EventsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        ViewModelProvider(this)[DashboardViewModel::class.java]
 
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         /*val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }*/
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,7 +63,7 @@ class EventsFragment : Fragment() {
 
         fun loadData() {
             try {
-                lifecycleScope.launch() {
+                lifecycleScope.launch {
                     withContext(Dispatchers.IO) {
                         val document: String
                         val sitePath =

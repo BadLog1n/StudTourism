@@ -39,18 +39,9 @@ class SearchFragment : Fragment() {
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         accommRc.layoutManager = linearLayoutManager
-        /* val a = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
-        rcAdapter.addAccomodation(a)
-        val b = TourismData("22", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
-        rcAdapter.addAccomodation(b)
-        val c = TourismData("23", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
-        rcAdapter.addAccomodation(c) */
-
-
-
 
         fun changeSearchResult() {
-            lifecycleScope.launch() {
+            lifecycleScope.launch {
                 withContext(Dispatchers.Main) {
                     rcAdapter.clearRecords()
                     for (item in result) {
@@ -77,7 +68,7 @@ class SearchFragment : Fragment() {
 
         fun loadData() {
             try {
-                lifecycleScope.launch() {
+                lifecycleScope.launch {
                     withContext(Dispatchers.IO) {
                         val document: String
                         val sitePath =
@@ -200,7 +191,4 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
 }

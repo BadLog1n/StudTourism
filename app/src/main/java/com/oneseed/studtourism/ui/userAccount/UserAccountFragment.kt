@@ -13,10 +13,6 @@ import com.oneseed.studtourism.R
 
 class UserAccountFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = UserAccountFragment()
-    }
-
     private lateinit var viewModel: UserAccountViewModel
 
     override fun onCreateView(
@@ -36,9 +32,10 @@ class UserAccountFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(UserAccountViewModel::class.java)
+        viewModel = ViewModelProvider(this)[UserAccountViewModel::class.java]
         // TODO: Use the ViewModel
     }
 

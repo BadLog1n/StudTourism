@@ -1,20 +1,15 @@
 package com.oneseed.studtourism.ui.notifications
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
-import com.oneseed.studtourism.databinding.AccommodationItemBinding
 import com.oneseed.studtourism.databinding.NotificationsItemBinding
-import com.oneseed.studtourism.ui.search.AccommodationAdapter
-import com.oneseed.studtourism.ui.search.TourismData
 
-class NotificationAdapter: RecyclerView.Adapter<NotificationAdapter.NotificationHolder>() {
+class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.NotificationHolder>() {
 
-    var notificationList = ArrayList<NotificationData>()
+    private var notificationList = ArrayList<NotificationData>()
 
     class NotificationHolder(item: View) : RecyclerView.ViewHolder(item) {
 
@@ -37,9 +32,10 @@ class NotificationAdapter: RecyclerView.Adapter<NotificationAdapter.Notification
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.notifications_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.notifications_item, parent, false)
 
-        return NotificationAdapter.NotificationHolder(view)
+        return NotificationHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -50,20 +46,19 @@ class NotificationAdapter: RecyclerView.Adapter<NotificationAdapter.Notification
         holder.bind(notificationList[position])
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun addNotification(notificationItem: NotificationData) {
         notificationList.add(notificationItem)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, notificationList.size)
     }
 
-    fun clearRecords() {
+/*    fun clearRecords() {
         notificationList.removeAll(notificationList.toSet())
-    }
+    }*/
 
 
-    @SuppressLint("NotifyDataSetChanged")
+/*    @SuppressLint("NotifyDataSetChanged")
     fun removeObject(notificationItem: NotificationData) {
         notificationList.remove(notificationItem)
         notifyDataSetChanged()
-    }
+    }*/
 }

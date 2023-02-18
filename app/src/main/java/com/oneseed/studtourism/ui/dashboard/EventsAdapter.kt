@@ -23,6 +23,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
     class EventHolder (item: View) : RecyclerView.ViewHolder(item) {
 
         private val binding = EventItemBinding.bind(item)
+        @SuppressLint("SetTextI18n")
         fun bind(eventItem: EventData) = with(binding) {
             try {
                 Picasso.get().load(eventItem.eventImage).into(eventImage)
@@ -39,7 +40,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
 
         }
 
-        fun getShortDate(ts:Long?):String{
+        private fun getShortDate(ts:Long?):String{
             if(ts == null) return ""
             //Get instance of calendar
             val calendar = Calendar.getInstance(Locale.getDefault())
@@ -53,7 +54,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.event_item, parent, false)
 
-        return EventsAdapter.EventHolder(view)
+        return EventHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -64,11 +65,9 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
         holder.bind(eventsList[position])
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     fun addEvent(eventItem: EventData) {
         eventsList.add(eventItem)
-        notifyDataSetChanged()
-
+        notifyItemRangeChanged(0, eventsList.size)
     }
 
     fun clearRecords() {
@@ -78,10 +77,10 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
+/*    @SuppressLint("NotifyDataSetChanged")
     fun removeObject(eventItem: EventData) {
         eventsList.remove(eventItem)
         notifyDataSetChanged()
-    }
+    }*/
 
 }
