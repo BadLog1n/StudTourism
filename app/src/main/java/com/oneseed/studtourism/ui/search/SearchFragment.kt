@@ -3,21 +3,32 @@ package com.oneseed.studtourism.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.FragmentSearchBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+import org.jsoup.Connection
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
     private var rcAdapter = AccommodationAdapter()
+    private val searchApi = SearchApi()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -28,14 +39,16 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val accommRc: RecyclerView = view.findViewById(R.id.acommodationSearchResultsRc)
         accommRc.adapter = rcAdapter
+        val a = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
+        rcAdapter.addFeedRecord(a)
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         accommRc.layoutManager = linearLayoutManager
+
         // закомментила потому что поменялся дата класс
         //val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
         //val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
         //val c = TourismData("13", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
-
         fun changeSearchResult() {
             if (binding.settingsLayout.visibility == View.VISIBLE) {
                 val isNotSelected =
@@ -54,7 +67,49 @@ class SearchFragment : Fragment() {
                         }
                     } */
                 }
+
             } else {
+
+
+
+                try {
+                    lifecycleScope.launch(){
+                        withContext(Dispatchers.IO){
+                            val document: String
+                            val sitePath =
+                                "https://stud-api.sabir.pro/universities/all"
+
+                            val response: Connection.Response = Jsoup.connect(sitePath)
+                                .ignoreContentType(true)
+                                .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21")
+                                .timeout(10000).execute()
+
+                            val statusCode: Int = response.statusCode()
+
+                            if (statusCode == 200) {
+                                document = Jsoup.connect(sitePath).ignoreContentType(true).get().text()
+                            } else throw Exception("Error")
+
+                            val jsonArray = JSONArray(document)
+                            val result =  searchApi.returnJson(jsonArray)
+                            withContext(Dispatchers.Main){
+                                for (item in result){
+                                    rcAdapter.addFeedRecord(item)
+                                }
+                            }
+
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("Error", e.toString())
+                }
+
+
+
+
+
+
+
                 // закомментила потому что поменялся дата класс
                 /*
                 for (item in listOf(a, b, c)) {
@@ -67,6 +122,10 @@ class SearchFragment : Fragment() {
                 } */
             }
         }
+
+
+
+        changeSearchResult()
 
         binding.searchSettingsButton.setOnClickListener {
             binding.settingsLayout.visibility =
