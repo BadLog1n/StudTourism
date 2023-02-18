@@ -43,19 +43,16 @@ class SearchFragment : Fragment() {
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         accommRc.layoutManager = linearLayoutManager
-        val a = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
+        /* val a = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
         rcAdapter.addAccomodation(a)
         val b = TourismData("22", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
         rcAdapter.addAccomodation(b)
         val c = TourismData("23", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
-        rcAdapter.addAccomodation(c)
+        rcAdapter.addAccomodation(c) */
 
 
 
-        // закомментила потому что поменялся дата класс
-        //val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
-        //val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
-        //val c = TourismData("13", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
+
         fun changeSearchResult() {
             if (binding.settingsLayout.visibility == View.VISIBLE) {
                 val isNotSelected =
