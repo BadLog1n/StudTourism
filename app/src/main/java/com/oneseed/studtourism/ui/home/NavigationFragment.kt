@@ -29,7 +29,7 @@ class NavigationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val storiesRc: RecyclerView = view.findViewById(R.id.storiesRcView)
+        /*val storiesRc: RecyclerView = view.findViewById(R.id.storiesRcView)
         storiesRc.adapter = rcAdapter
         rcAdapter.recordsList = ArrayList()
         rcAdapter.addPhotoRecord(
@@ -52,7 +52,7 @@ class NavigationFragment : Fragment() {
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, true)
         linearLayoutManager.stackFromEnd = true
-        storiesRc.layoutManager = linearLayoutManager
+        storiesRc.layoutManager = linearLayoutManager */
 
 
         super.onViewCreated(view, savedInstanceState)
