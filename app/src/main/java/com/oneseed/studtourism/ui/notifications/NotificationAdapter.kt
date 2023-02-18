@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.AccommodationItemBinding
@@ -24,12 +25,12 @@ class NotificationAdapter: RecyclerView.Adapter<NotificationAdapter.Notification
             notificationName.text = notificationItem.name
             notifTextTv.text = notificationItem.text
             notifTime.text = notificationItem.time
-            if (notificationItem.isWatched){
+            /*if (notificationItem.isWatched){
                 notifBellImageview.setImageResource(R.drawable.ic_bell_green)
             }
             else {
                 notifBellImageview.setImageResource(R.drawable.ic_bell)
-            }
+            }*/
 
         }
 
@@ -37,6 +38,7 @@ class NotificationAdapter: RecyclerView.Adapter<NotificationAdapter.Notification
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notifications_item, parent, false)
+
         return NotificationAdapter.NotificationHolder(view)
     }
 
