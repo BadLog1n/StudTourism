@@ -11,7 +11,11 @@
         android:label="@string/search"
         tools:layout="@layout/fragment_search" />
 
-
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.oneseed.studtourism.ui.notifications.NotificationsFragment"
+        android:label="@string/notifications"
+        tools:layout="fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_navigation"
