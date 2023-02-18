@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/accommodationItemLayout"
+    android:id="@+id/eventItemLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -23,54 +23,31 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
             app:cardCornerRadius="10dp">
 
             <ImageView
-                android:id="@+id/accommImage"
+                android:id="@+id/eventImage"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="50dp"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/accomm1" />
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/eventName_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/name_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/raleway"
-                android:text="MODUL-D"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/city_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/raleway"
-                android:text="Санкт-Петербург"
-                android:textColor="@color/green_text" />
-
-            <TextView
-                android:id="@+id/accommCost_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/raleway_black"
-                android:text="от 240 руб."
-                android:textColor="@color/grey" />
-
-        </LinearLayout>
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.8"
+            android:fontFamily="@font/raleway"
+            android:text="Подготовка переводчиков к работе в международных организациях"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/eventHeartButton"
@@ -85,9 +62,40 @@
             android:id="@+id/heartFilledButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:backgroundTint="#FFFFFF"
             android:visibility="gone"
             app:srcCompat="@drawable/ic_heart_filled" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_weight="0.6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eventCity_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/raleway"
+            android:text="Москва"
+            android:textColor="@color/green_text" />
+
+        <TextView
+            android:id="@+id/eventDate_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:fontFamily="@font/raleway"
+            android:gravity="end"
+            android:text="01.09.2022 - 31.05.2023"
+            android:textColor="@color/grey" />
+
     </LinearLayout>
 
 </LinearLayout>

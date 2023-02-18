@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.FragmentEventsBinding
 
 class EventsFragment : Fragment() {
+
+    private var rcAdapter = EventsAdapter()
 
     private var _binding: FragmentEventsBinding? = null
 
@@ -35,6 +40,21 @@ class EventsFragment : Fragment() {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val eventRc: RecyclerView = view.findViewById(R.id.eventsRc)
+        eventRc.adapter = rcAdapter
+        val linearLayoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        eventRc.layoutManager = linearLayoutManager
+        val a = EventData("21", "Центральный", "Амурская область", "4", false)
+        rcAdapter.addEvent(a)
+        val b = EventData("22", "Центральный", "Амурская область", "4", false)
+        rcAdapter.addEvent(b)
+        val c = EventData("23", "Центральный", "Амурская область", "4", false)
+        rcAdapter.addEvent(c)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.dashboard.EventsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/ic__location_pin_"
-                android:tint="#000000" />
+                app:tint="#000000" />
 
             <TextView
                 android:id="@+id/eventLocation_tv"
@@ -90,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            tools:listitem="@layout/event_item" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
