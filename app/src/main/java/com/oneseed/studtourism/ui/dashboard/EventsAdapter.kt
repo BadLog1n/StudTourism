@@ -10,6 +10,11 @@ import com.oneseed.studtourism.databinding.EventItemBinding
 import com.oneseed.studtourism.ui.notifications.NotificationAdapter
 import com.oneseed.studtourism.ui.notifications.NotificationData
 import com.oneseed.studtourism.ui.search.TourismData
+import com.squareup.picasso.Picasso
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
 
@@ -19,14 +24,31 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
 
         private val binding = EventItemBinding.bind(item)
         fun bind(eventItem: EventData) = with(binding) {
-
+            try {
+                Picasso.get().load(eventItem.eventImage).into(eventImage)
+            } catch (e: Exception) {
+                Picasso.get().load(R.drawable.ic__location_pin_).into(eventImage)
+            }
             //eventImage.drawable = eventItem.eventImage
             eventNameTv.text = eventItem.name
-            eventCityTv.text = eventItem.city
-            eventDateTv.text = eventItem.date
+            eventPriceTv.text = "Стоимость: ${eventItem.price} р."
+            val dateFrom = getShortDate(eventItem.dateFrom.toLong())
+            val dateTo= getShortDate(eventItem.dateTo.toLong())
+            val date = dateFrom + dateTo
+            eventDateTv.text = date
+
 
         }
 
+        fun getShortDate(ts:Long?):String{
+            if(ts == null) return ""
+            //Get instance of calendar
+            val calendar = Calendar.getInstance(Locale.getDefault())
+            //get current date from ts
+            calendar.timeInMillis = ts
+            //return formatted date
+            return android.text.format.DateFormat.format("E, dd MMM yyyy", calendar).toString()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
