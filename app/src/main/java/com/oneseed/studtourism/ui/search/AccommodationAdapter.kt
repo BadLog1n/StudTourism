@@ -39,7 +39,7 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addFeedRecord(accommItem: TourismData) {
+    fun addAccomodation(accommItem: TourismData) {
         accommsList.add(accommItem)
         notifyDataSetChanged()
     }
