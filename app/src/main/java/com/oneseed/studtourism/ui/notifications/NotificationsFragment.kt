@@ -43,17 +43,10 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        ViewModelProvider(this)[NotificationsViewModel::class.java]
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        /*val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
-        return root
+        return binding.root
     }
 
     private fun createNotifyChannel() {
@@ -82,11 +75,16 @@ class NotificationsFragment : Fragment() {
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         notifRc.layoutManager = linearLayoutManager
-        val a = NotificationData("Заявка 1", "Ваша заявка..", "8 часов назад", false)
+        val a = NotificationData(
+            "Заявка 1",
+            "Ваша заявка нуждается в уточнении данных..",
+            "8 часов назад",
+            false
+        )
         rcAdapter.addNotification(a)
-        val b = NotificationData("Заявка 2", "Ваша заявка..", "8 часов назад", true)
+        val b = NotificationData("Заявка 1", "Ваша заявка рассматривается..", "1 день назад", true)
         rcAdapter.addNotification(b)
-        val c = NotificationData("Заявка 3", "Ваша заявка..", "8 часов назад", true)
+        val c = NotificationData("Заявка 1", "Ваша заявка получена..", "2 дня назад", true)
         rcAdapter.addNotification(c)
 
 
@@ -101,22 +99,14 @@ class NotificationsFragment : Fragment() {
             }
 
             val randomTextArray = arrayOf(
-                "Тестовое уведомление 1",
-                "Тестовое уведомление 2",
-                "Тестовое уведомление 3",
-                "Тестовое уведомление 4",
-                "Тестовое уведомление 5",
-                "Тестовое уведомление 6",
-                "Тестовое уведомление 7",
+                "В офисе Яндекс проходит день стажера. Присоединяйся!",
+                "Сегодня в Москве много интересных мероприятий! Переходи в события и участвуй!",
+                "Давно Вас не видели. Как насчёт путешествия?"
             )
             val randomTextTitleArray = arrayOf(
-                "Заголовок 1",
-                "Заголовок 2",
-                "Заголовок 3",
-                "Заголовок 4",
-                "Заголовок 5",
-                "Заголовок 6",
-                "Заголовок 7",
+                "День стажера",
+                "Город Москва",
+                "Студтуризм"
             )
 
             val randomTextTitle = randomTextTitleArray.random()
