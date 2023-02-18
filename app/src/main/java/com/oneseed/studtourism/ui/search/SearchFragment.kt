@@ -31,6 +31,12 @@ class SearchFragment : Fragment() {
         val linearLayoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         accommRc.layoutManager = linearLayoutManager
+        val a = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
+        rcAdapter.addFeedRecord(a)
+        val b = TourismData("22", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
+        rcAdapter.addFeedRecord(b)
+        val c = TourismData("23", "Центральный", "Амурская область", "4", "5", "6", "7", "8", "1", "1")
+        rcAdapter.addFeedRecord(c)
         // закомментила потому что поменялся дата класс
         //val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
         //val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
