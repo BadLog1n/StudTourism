@@ -1,9 +1,11 @@
 package com.oneseed.studtourism.ui.search
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.AccommodationItemBinding
@@ -32,6 +34,9 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccomodationHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.accommodation_item, parent, false)
+
+
+
         return AccomodationHolder(view)
     }
 
