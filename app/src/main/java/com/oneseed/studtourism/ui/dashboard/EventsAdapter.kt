@@ -34,8 +34,7 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
             eventPriceTv.text = "Стоимость: ${eventItem.price} р."
             val dateFrom = getShortDate(eventItem.dateFrom.toLong())
             val dateTo= getShortDate(eventItem.dateTo.toLong())
-            val date = dateFrom + dateTo
-            eventDateTv.text = date
+            eventDateTv.text = "$dateFrom - $dateTo"
 
 
         }
