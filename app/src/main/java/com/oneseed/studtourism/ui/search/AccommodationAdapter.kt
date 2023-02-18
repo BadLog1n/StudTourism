@@ -1,15 +1,18 @@
 package com.oneseed.studtourism.ui.search
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.AccommodationItemBinding
 import com.squareup.picasso.Picasso
 
-class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.AccomodationHolder>() {
+class AccommodationAdapter : RecyclerView.Adapter<AccommodationAdapter.AccomodationHolder>() {
 
     private var accommsList = ArrayList<TourismData>()
 
@@ -32,10 +35,25 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccomodationHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.accommodation_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.accommodation_item, parent, false)
+        val layout = view.findViewById<View>(R.id.accommodationItemLayout)
+        layout.setOnClickListener {
+            val nameTv = view.findViewById<TextView>(R.id.name_tv).text.toString()
+            val alert = AlertDialog.Builder(parent.context)
+                .setTitle("Подать заявку")
+                .setMessage("Подать заявку на проживание в $nameTv?")
+                .setPositiveButton("Да") { _, _ ->
+                }
+                .setNegativeButton("Нет") { _, _ ->
+                }
+                .create()
+            alert.show()
+            //color of buttons black both
 
-
-
+            alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
+            alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
+        }
         return AccomodationHolder(view)
     }
 
