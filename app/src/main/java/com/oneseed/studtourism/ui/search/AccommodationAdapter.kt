@@ -45,10 +45,13 @@ class AccommodationAdapter: RecyclerView.Adapter<AccommodationAdapter.Accomodati
     fun addAccomodation(accommItem: TourismData) {
         accommsList.add(accommItem)
         notifyDataSetChanged()
+
     }
 
     fun clearRecords() {
         accommsList.removeAll(accommsList.toSet())
+        notifyItemRangeRemoved(0, accommsList.size)
+        notifyItemRangeChanged(0, accommsList.size)
     }
 
 
