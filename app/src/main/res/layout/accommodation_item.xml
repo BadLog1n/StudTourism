@@ -74,9 +74,20 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/sharingBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:visibility="visible"
+            android:backgroundTint="#FFFFFF"
+            app:srcCompat="@android:drawable/ic_menu_share"
+            app:tint="@color/black" />
+
+
+        <ImageButton
             android:id="@+id/eventHeartButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="end"
             android:backgroundTint="#FFFFFF"
             android:visibility="visible"
@@ -84,8 +95,8 @@
 
         <ImageButton
             android:id="@+id/heartFilledButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:backgroundTint="#FFFFFF"
             android:visibility="gone"
             app:srcCompat="@drawable/ic_heart_filled" />

@@ -2,6 +2,7 @@ package com.oneseed.studtourism.ui.search
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -54,6 +55,36 @@ class AccommodationAdapter : RecyclerView.Adapter<AccommodationAdapter.Accomodat
             alert.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
             alert.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
         }
+        val imageHeart = view.findViewById<View>(R.id.eventHeartButton)
+        val imageHeartFilled = view.findViewById<View>(R.id.heartFilledButton)
+
+        imageHeart.setOnClickListener{
+            imageHeartFilled.visibility = View.VISIBLE
+            imageHeart.visibility = View.GONE
+        }
+        imageHeartFilled.setOnClickListener{
+            imageHeartFilled.visibility = View.GONE
+            imageHeart.visibility = View.VISIBLE
+        }
+        val sharingBtn = view.findViewById<View>(R.id.sharingBtn)
+        sharingBtn.setOnClickListener {
+            val nameTv = view.findViewById<TextView>(R.id.name_tv).text.toString()
+
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            val shareBody = "Посмотри на это общежитие: $nameTv"
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "СтудТуризм")
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+            parent.context.startActivity(
+                Intent.createChooser(
+                    sharingIntent,
+                    "Поделиться через..."
+                )
+            )
+        }
+
+
+
         return AccomodationHolder(view)
     }
 

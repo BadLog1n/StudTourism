@@ -7,22 +7,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.EventItemBinding
-import com.oneseed.studtourism.ui.notifications.NotificationAdapter
-import com.oneseed.studtourism.ui.notifications.NotificationData
-import com.oneseed.studtourism.ui.search.TourismData
 import com.squareup.picasso.Picasso
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
 
-    var eventsList = ArrayList<EventData>()
+    private var eventsList = ArrayList<EventData>()
 
-    class EventHolder (item: View) : RecyclerView.ViewHolder(item) {
+    class EventHolder(item: View) : RecyclerView.ViewHolder(item) {
 
         private val binding = EventItemBinding.bind(item)
+
         @SuppressLint("SetTextI18n")
         fun bind(eventItem: EventData) = with(binding) {
             try {
@@ -34,14 +29,14 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
             eventNameTv.text = eventItem.name
             eventPriceTv.text = "Стоимость: ${eventItem.price} р."
             val dateFrom = getShortDate(eventItem.dateFrom.toLong())
-            val dateTo= getShortDate(eventItem.dateTo.toLong())
+            val dateTo = getShortDate(eventItem.dateTo.toLong())
             eventDateTv.text = "$dateFrom - $dateTo"
 
 
         }
 
-        private fun getShortDate(ts:Long?):String{
-            if(ts == null) return ""
+        private fun getShortDate(ts: Long?): String {
+            if (ts == null) return ""
             //Get instance of calendar
             val calendar = Calendar.getInstance(Locale.getDefault())
             //get current date from ts
@@ -53,7 +48,17 @@ class EventsAdapter : RecyclerView.Adapter<EventsAdapter.EventHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.event_item, parent, false)
+        val imageHeart = view.findViewById<View>(R.id.eventHeartButton)
+        val imageHeartFilled = view.findViewById<View>(R.id.heartFilledButton)
 
+        imageHeart.setOnClickListener {
+            imageHeartFilled.visibility = View.VISIBLE
+            imageHeart.visibility = View.GONE
+        }
+        imageHeartFilled.setOnClickListener {
+            imageHeartFilled.visibility = View.GONE
+            imageHeart.visibility = View.VISIBLE
+        }
         return EventHolder(view)
     }
 
