@@ -72,11 +72,9 @@ class NotificationsFragment : Fragment() {
 
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
 
         val notifRc: RecyclerView = requireView().findViewById(R.id.notificationsRc)
@@ -109,19 +107,29 @@ class NotificationsFragment : Fragment() {
                 "Тестовое уведомление 4",
                 "Тестовое уведомление 5",
                 "Тестовое уведомление 6",
-                "Тестовое уведомление 7",)
-            val randomTextTitle = arrayOf(
+                "Тестовое уведомление 7",
+            )
+            val randomTextTitleArray = arrayOf(
                 "Заголовок 1",
                 "Заголовок 2",
                 "Заголовок 3",
                 "Заголовок 4",
                 "Заголовок 5",
                 "Заголовок 6",
-                "Заголовок 7",)
+                "Заголовок 7",
+            )
+
+            val randomTextTitle = randomTextTitleArray.random()
+            val randomText = randomTextArray.random()
+
+
+            rcAdapter.addNotification(
+                NotificationData(randomTextTitle, randomText, "Сейчас", false)
+            )
 
             val notify = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-                .setContentTitle(randomTextTitle.random())
-                .setContentText(randomTextArray.random())
+                .setContentTitle(randomTextTitle)
+                .setContentText(randomText)
                 .setSmallIcon(R.drawable.ic_dashboard_black_24dp)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
