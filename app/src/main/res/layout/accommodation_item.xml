@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/accommodationItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+
+    android:background="@drawable/round_edge_rec"
+    android:fadingEdge="horizontal|vertical"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="15dp">
+
+    <LinearLayout
+        android:id="@+id/accommItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/accommImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/accomm1" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/raleway"
+                android:text="MODUL-D"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/city_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/raleway"
+                android:text="Санкт-Петербург"
+                android:textColor="@color/green_text" />
+
+            <TextView
+                android:id="@+id/accommCost_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_black"
+                android:text="от 240 руб."
+                android:textColor="@color/grey" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/sharingBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:visibility="visible"
+            android:backgroundTint="#FFFFFF"
+            app:srcCompat="@android:drawable/ic_menu_share"
+            app:tint="@color/black" />
+
+
+        <ImageButton
+            android:id="@+id/eventHeartButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:backgroundTint="#FFFFFF"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic__heart" />
+
+        <ImageButton
+            android:id="@+id/heartFilledButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:backgroundTint="#FFFFFF"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_heart_filled" />
+    </LinearLayout>
+
+</LinearLayout>

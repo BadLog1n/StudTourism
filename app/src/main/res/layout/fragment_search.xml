@@ -10,44 +10,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:autofillHints="false"
+            android:background="@drawable/edittext_background"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:gravity="start|center_vertical"
+            android:hint="@string/whereAreWeGoing"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="15sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp">
 
             <ImageButton
                 android:id="@+id/searchSettingsButton"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:src="@drawable/baseline_manage_search_24" />
-
-            <EditText
-                android:id="@+id/searchEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:layout_weight="50"
-                android:autofillHints="false"
-                android:ems="10"
-                android:gravity="bottom|center"
-                android:hint="@string/search"
-                android:inputType="text"
-                android:textSize="23sp" />
+                android:background="@null"
+                android:src="@drawable/baseline_filter_alt_24"
+                app:tint="@color/grey" />
+
+            <TextView
+                android:id="@+id/filters_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/filters"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/sortingSearchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="#FFFFFF"
+                android:src="@drawable/ic_sort" />
+
+            <TextView
+                android:id="@+id/sorting_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_medium"
+                android:text="@string/sorting"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/settingsLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical"
             android:visibility="gone">
 
@@ -121,8 +157,46 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/searchResultsLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/slightly_blue"
+            android:backgroundTint="@color/slightly_blue"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/foundtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:text="@string/found"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/acommodationSearchResultsRc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="128dp"
+                android:minHeight="20dp"
+                tools:listitem="@layout/accommodation_item" />
+        </LinearLayout>
     </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

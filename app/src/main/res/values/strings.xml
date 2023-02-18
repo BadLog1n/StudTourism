@@ -10,7 +10,14 @@
     <string name="locality">Населенный пункт</string>
     <string name="navigation">Навигация</string>
     <string name="events">События</string>
-    <string name="user_account">Личный кабинет</string>
+    <string name="user_account">Профиль</string>
+
+    <string name="filters">Фильтры</string>
+    <string name="sorting">Сортировка</string>
+    <string name="found">Найдено</string>
+    <string name="whereAreWeGoing">Куда едем?</string>
+    <string name="booking">Бронь</string>
+    <string name="services">Сервисы</string>
 
     <string-array name="fedDistrict">
         <item></item>

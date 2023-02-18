@@ -19,9 +19,9 @@ class StoriesPhotoAdapter : RecyclerView.Adapter<StoriesPhotoAdapter.StoriesHold
 
     }
 
-    fun addPhotoRecord(feedRecord: StoriesRecord) {
+/*    fun addPhotoRecord(feedRecord: StoriesRecord) {
         recordsList.add(feedRecord)
-    }
+    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoriesHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.stories_item, parent, false)

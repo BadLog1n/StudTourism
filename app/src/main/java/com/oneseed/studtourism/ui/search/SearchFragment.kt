@@ -3,57 +3,125 @@ package com.oneseed.studtourism.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.oneseed.studtourism.R
 import com.oneseed.studtourism.databinding.FragmentSearchBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.jsoup.Connection
+import org.jsoup.Jsoup
 
 class SearchFragment : Fragment() {
-    private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentSearchBinding
+    private var rcAdapter = AccommodationAdapter()
+    private val searchApi = SearchApi()
+    private lateinit var result: ArrayList<TourismData>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val a = TourismData("1", "2", "Алтайский край", "Апатиты", "", "6", "7", "8")
-        val b = TourismData("21", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
-        val c = TourismData("13", "Центральный", "Амурская область", "4", "5", "6", "7", "8")
+        val accommRc: RecyclerView = view.findViewById(R.id.acommodationSearchResultsRc)
+        accommRc.adapter = rcAdapter
+        val linearLayoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        accommRc.layoutManager = linearLayoutManager
 
         fun changeSearchResult() {
-            if (binding.settingsLayout.visibility == View.VISIBLE) {
-                val isNotSelected =
-                    binding.fedDistrictSpinner.selectedItem.toString() == "" && binding.subjectFedSpinner.selectedItem.toString() == "" && binding.localitySpinner.selectedItem.toString() == ""
-                if (!isNotSelected) {
-                    for (item in listOf(a, b, c)) {
-                        if (binding.searchEditText.text.toString() in item.name
-                            && binding.fedDistrictSpinner.selectedItem.toString() in item.fedDistrict
-                            && binding.subjectFedSpinner.selectedItem.toString() in item.subject
-                            && binding.localitySpinner.selectedItem.toString() in item.locality
+            lifecycleScope.launch {
+                withContext(Dispatchers.Main) {
+                    binding.progressBar.visibility = View.GONE
+                    binding.acommodationSearchResultsRc.visibility = View.VISIBLE
+                    rcAdapter.clearRecords()
+                    for (item in result) {
+                        if (binding.searchEditText.text.isNotBlank()
+                            && binding.searchEditText.text.isNotEmpty()
                         ) {
-                            Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT)
-                                .show()
+                            if (binding.searchEditText.text.toString()
+                                    .uppercase() in item.name.uppercase()
+                                || binding.searchEditText.text.toString().uppercase() in item.city.uppercase()
+                            ) {
+                                rcAdapter.addAccomodation(item)
+                            }
+
+                        } else {
+                            rcAdapter.addAccomodation(item)
+
                         }
                     }
                 }
-            } else {
-                for (item in listOf(a, b, c)) {
-                    if (binding.searchEditText.text.toString() in item.name
-                        && binding.searchEditText.text.isNotBlank()
-                        && binding.searchEditText.text.isNotEmpty()
-                    ) {
-                        Toast.makeText(context, "Найдено, ${item.name}", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
+        fun loadData() {
+            try {
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        val document: String
+                        val sitePath =
+                            "https://stud-api.sabir.pro/universities/all"
+
+                        val response: Connection.Response = Jsoup.connect(sitePath)
+                            .ignoreContentType(true)
+                            .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21")
+                            .timeout(10000).execute()
+
+                        val statusCode: Int = response.statusCode()
+
+                        if (statusCode == 200) {
+                            document =
+                                Jsoup.connect(sitePath).ignoreContentType(true).get().text()
+                        } else throw Exception("Error")
+
+                        val jsonArray = JSONArray(document)
+                        result = searchApi.returnJson(jsonArray)
+                        withContext(Dispatchers.Main) {
+                            binding.progressBar.visibility = View.GONE
+                            binding.acommodationSearchResultsRc.visibility = View.VISIBLE
+                            rcAdapter.clearRecords()
+                            for (item in result) {
+                                if (binding.searchEditText.text.isNotBlank()
+                                    && binding.searchEditText.text.isNotEmpty()
+                                ) {
+                                    if (binding.searchEditText.text.toString()
+                                            .uppercase() in item.name.uppercase() || binding.searchEditText.text.toString() in item.city.uppercase()
+                                    ) {
+                                        rcAdapter.addAccomodation(item)
+                                    }
+
+                                } else {
+                                    rcAdapter.addAccomodation(item)
+
+                                }
+                            }
+                            if (rcAdapter.itemCount == 0) {
+                                binding.foundtv.text = "Ничего не найдено"
+                            }
+                        }
+
                     }
                 }
+            } catch (e: Exception) {
+                Log.e("Error", e.toString())
             }
         }
 
+        loadData()
         binding.searchSettingsButton.setOnClickListener {
             binding.settingsLayout.visibility =
                 if (binding.settingsLayout.visibility == View.VISIBLE) View.GONE else View.VISIBLE
@@ -127,8 +195,4 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

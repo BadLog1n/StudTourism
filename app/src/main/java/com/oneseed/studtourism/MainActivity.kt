@@ -47,18 +47,14 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar?.show()
                     navController.navigate(R.id.navigation_search)
                 return@setOnItemSelectedListener true}
-                R.id.navigation_notifications -> {
-                    toolbar.title = "Уведомления"
-                    supportActionBar?.show()
-                    navController.navigate(R.id.navigation_notifications)
-                    return@setOnItemSelectedListener true}
+
                 R.id.navigation_events -> {
                     toolbar.title = "События"
                     supportActionBar?.show()
                     navController.navigate(R.id.navigation_events)
                     return@setOnItemSelectedListener true}
                 R.id.navigation_navigation -> {
-                    toolbar.title = "Навигация"
+                    toolbar.title = "Сервисы"
                     supportActionBar?.show()
                     navController.navigate(R.id.navigation_navigation)
                     return@setOnItemSelectedListener true}
@@ -74,45 +70,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         //navView.setupWithNavController(navController)
-
-        createNotifyChannel()
-
-        val intent = Intent(this, MainActivity::class.java)
-        val pendingIntent = TaskStackBuilder.create(this).run {
-            addNextIntentWithParentStack(intent)
-            getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-        }
-
-        val notify = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Тестовый заголовок")
-            .setContentText("Это тестовое уведомление")
-            .setSmallIcon(R.drawable.ic_dashboard_black_24dp)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
-
-
-        val notifyManger = NotificationManagerCompat.from(this)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    1
-                )
-
-                return
-            }
-        }
-        notifyManger.notify(NOTIFY_ID, notify)
-
 
     }
 
@@ -131,5 +88,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+
 
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/eventItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+
+    android:background="@drawable/round_edge_rec"
+    android:fadingEdge="horizontal|vertical"
+    android:orientation="vertical"
+    android:paddingStart="10dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="10dp">
+
+            <ImageView
+                android:id="@+id/eventImage"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/accomm1" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/eventName_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.8"
+            android:fontFamily="@font/raleway"
+            android:text="Подготовка переводчиков к работе в международных организациях"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/eventHeartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:backgroundTint="#FFFFFF"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic__heart" />
+
+        <ImageButton
+            android:id="@+id/heartFilledButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:backgroundTint="#FFFFFF"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_heart_filled" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_weight="0.6"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/eventPrice_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/raleway"
+            android:text=""
+            android:textColor="@color/green_text" />
+
+        <TextView
+            android:id="@+id/eventDate_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:fontFamily="@font/raleway"
+            android:gravity="end"
+            android:text="01.09.2022 - 31.05.2023"
+            android:textColor="@color/grey" />
+
+    </LinearLayout>
+
+</LinearLayout>
