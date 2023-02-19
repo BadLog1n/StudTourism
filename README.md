@@ -29,7 +29,9 @@
 ------------
 <p>Скачать мобильное приложение можно в разделе Releases или по ссылке: https://github.com/BadLog1n/StudTourism/releases/download/1.0-release/studtourism.apk
 <p>Важно: приложение может работать некорректно с включенной темной темой и при отсутствии интернета<p>
-<p>Посмотреть макет приложения можно по ссылке: https://www.figma.com/file/E1f1z8kZVCpzlwApfSX9Y1/%D0%A1%D1%82%D1%83%D0%B4%D1%82%D1%83%D1%80%D0%B8%D0%B7%D0%BC?node-id=0%3A1&t=wTmvUvJaeO8uqeor-1</p>
+<p>Посмотреть макет приложения можно по ссылке: https://www.figma.com/file/DadFEGHkRApIQMIha4gysj/studtourism?node-id=0%3A1&t=DwZZvUWYkToBXKHe-1</p>
+<p>Посмотреть демонстрацию прототипа можно по ссылке: https://drive.google.com/file/d/1l1F9-uFk0k2otCnF8-bWFH5N2dh4iSHx/view?usp=share_link</p>
+<p>Посмотреть демонстрацию решения можно по ссылке: https://drive.google.com/file/d/1HSPhlfw2OOsVpGa9uoZY7YFPVM_fDzex/view?usp=share_link</p>
 
 УСТАНОВКА
 ------------
